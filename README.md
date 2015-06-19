@@ -4,11 +4,18 @@ Genome Atlas (TCGA). The data used has been processed with scripts from
 https://github.com/arnijohnsen/tcga-analysis
 
 ## Installation
-On \*nix systems, use the following commands
+In `R`, use the following commands
+```
+# install.packages(c("shiny", "data.table", "RSQLite",
+#                    "reshape2", "ggvis", "dplyr", "stringr")
+library(shiny)
+runGitHub("tcga-shiny", "arnijohnsen")
+```
+On \*nix systems, you can clone this repository, run the app and make
+modifications with the following commands
 ```
 git clone https://github.com/arnijohnsen/tcga-shiny
 R
 > library(shiny)
 > runApp("tcga-shiny")
 ```
-Running the app with `runGitHub` has not been tested (yet). 
