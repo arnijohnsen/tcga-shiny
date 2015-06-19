@@ -1,0 +1,74 @@
+library(shiny)
+library(data.table)
+library(RSQLite)
+library(reshape2)
+library(ggvis)
+library(dplyr)
+library(stringr)
+
+shinyUI(fluidPage(
+
+  titlePanel("BRCA Plotting app version 0.06"),
+
+  sidebarLayout(
+    sidebarPanel(
+      selectizeInput(
+        "gene",
+        label = "Search for gene",
+        choices = NULL,
+        options = list(maxOptions = 15, maxItems = 1)
+      ),
+      selectizeInput(
+        "probe",
+        label = "Search for probe",
+        choices = NULL,
+        options = list(maxOptions = 15, maxItems = 1)
+      ),
+      radioButtons(
+        "x_value",
+        label = "Select x-axis variable",
+        choices = list(
+          "Copy number" = "cnvs",
+          "Expression" = "expr",
+          "Methylation" = "meth"
+        ),
+        selected = "cnvs", 
+        inline = TRUE
+      ),
+      radioButtons(
+        "y_value",
+        label = "Select y-axis variable",
+        choices = list(
+          "Copy number" = "cnvs",
+          "Expression" = "expr",
+          "Methylation" = "meth"
+        ),
+        selected = "expr", 
+        inline = TRUE
+      ),
+      selectizeInput(
+        "clin",
+        label = "Select clinical data to use",
+        choices = NULL,
+        options = list(maxItems = 1)
+      ),
+      sliderInput(
+        "point_size",
+        "Point size",
+        min = 0,
+        max = 100,
+        value = 50),
+      sliderInput(
+        "point_opacity",
+        "Point opacity",
+        min = 0,
+        max = 1,
+        value = 0.7),
+      actionButton("go_plot", "Plot")
+    ),
+
+    mainPanel(
+      ggvisOutput("plot")
+    )
+  )
+))
