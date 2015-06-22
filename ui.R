@@ -63,8 +63,8 @@ shinyUI(fluidPage(
         "Point opacity",
         min = 0,
         max = 1,
-        value = 0.7),
-      actionButton("go_plot", "Plot")
+        value = 0.8
+      )
     ),
 
     mainPanel(

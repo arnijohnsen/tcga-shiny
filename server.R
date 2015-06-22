@@ -36,16 +36,17 @@ shinyServer(function(input, output, session) {
     )
   })
 
-  plot_data <- eventReactive(input$go_plot, {
+  plot_data <- reactive({
     # Reactive function to generate plot data when action button is pressed
-    if (input$gene == "" || input$clin == "") {
+    if (input$gene == "" || input$probe == "" || input$clin == "") {
       # Return function if selected gene is empty.
+      print("Returning empty data.frame\n")
       return(
         data.table(
-          participant <- character(),
-          x <- numeric(),
-          y <- numeric(),
-          clinical <- character()
+          participant = character(),
+          x = numeric(),
+          y = numeric(),
+          clinical = character()
         )
       )
     }
@@ -71,10 +72,10 @@ shinyServer(function(input, output, session) {
     if (!(all(c("x","y") %in% names(xy_cast)))) {
       return(
         data.table(
-          participant <- character(),
-          x <- numeric(),
-          y <- numeric(),
-          clinical <- character()
+          participant = character(),
+          x = numeric(),
+          y = numeric(),
+          clinical = character()
         )
       )
     }
@@ -88,21 +89,21 @@ shinyServer(function(input, output, session) {
     str_replace_all(x$participant, "_", "-")
   }
 
-  observe({
-    # Reactive expression to render ggvis plot -------------------------------
-    eventReactive(input$go_plot,{
-      plot_data() %>%
-      ggvis(~x, ~y, key := ~participant) %>%
-      layer_points(
-        fill = ~factor(clinical),
-        stroke := "black",
-        opacity := input$point_opacity,
-        size := input$point_size
-      ) %>%
-      add_axis("x", title = gen_title(input$x_value)) %>%
-      add_axis("y", title = gen_title(input$y_value), title_offset = 60) %>%
-      add_legend("fill", title = gen_title("gender")) %>%
-      set_options(width = 875, height = 575) 
-    }) %>% bind_shiny("plot")
-  })
+  # Reactive expression to render ggvis plot -------------------------------
+  reactive({
+    print("Creating graph\n")
+    plot_data() %>%
+    ggvis(~x, ~y, key := ~participant) %>%
+    layer_points(
+      fill = ~factor(clinical),
+      stroke := "black",
+      opacity := input$point_opacity,
+      size := input$point_size
+    ) %>%
+    add_axis("x", title = gen_title(input$x_value)) %>%
+    add_axis("y", title = gen_title(input$y_value), title_offset = 60) %>%
+    add_tooltip(plot_tooltip, on = "hover") %>%
+    add_legend("fill", title = gen_title("gender")) %>%
+    set_options(width = 875, height = 575) 
+  }) %>% bind_shiny("plot")
 })
