@@ -20,8 +20,8 @@ allowed_probes <- meth$probe
 
 shinyServer(function(input, output, session) {
   updateSelectizeInput(session, "gene", choices = nice_genes, server = TRUE)
-  clin_choices <- names(clin)
-  names(clin_choices) <- gen_title(clin_choices)
+  # clin_choices <- names(clin)
+  # names(clin_choices) <- gen_title(clin_choices)
   updateSelectizeInput(session, "clin", choices = clin_choices, server = TRUE)
   probe_choices <- reactive({
     if (input$gene == "") {

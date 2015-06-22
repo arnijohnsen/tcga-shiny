@@ -20,3 +20,25 @@ gen_title <- function(type){
   )
 }
 
+clin_choices <- c(
+  "gender",
+  "menopause_status",
+  "tumor_status",
+  "vital_status",
+  "ajcc_pathologic_tumor_stage",
+  "er_status_by_ihc",
+  "pr_status_by_ihc",
+  "her2_status_by_ihc",
+  "histological_type"
+)
+names(clin_choices) <- c(
+  "Gender",
+  "Menopause status", 
+  "Tumor status",
+  "Vital status", 
+  "Tumor stage",
+  "ER status by IHC",
+  "PR status by IHC",
+  "HER2 status by IHC",
+  "Histological type"
+)
