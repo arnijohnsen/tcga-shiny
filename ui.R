@@ -1,6 +1,5 @@
 library(shiny)
 library(data.table)
-library(RSQLite)
 library(reshape2)
 library(ggvis)
 library(dplyr)

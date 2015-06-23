@@ -40,7 +40,6 @@ shinyServer(function(input, output, session) {
     # Reactive function to generate plot data when action button is pressed
     if (input$gene == "" || input$probe == "" || input$clin == "") {
       # Return function if selected gene is empty.
-      print("Returning empty data.frame\n")
       return(
         data.table(
           participant = character(),
@@ -91,7 +90,6 @@ shinyServer(function(input, output, session) {
 
   # Reactive expression to render ggvis plot -------------------------------
   reactive({
-    print("Creating graph\n")
     plot_data() %>%
     ggvis(~x, ~y, key := ~participant) %>%
     layer_points(
