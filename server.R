@@ -101,7 +101,7 @@ shinyServer(function(input, output, session) {
     add_axis("x", title = gen_title(input$x_value)) %>%
     add_axis("y", title = gen_title(input$y_value), title_offset = 60) %>%
     add_tooltip(plot_tooltip, on = "hover") %>%
-    add_legend("fill", title = gen_title("gender")) %>%
+    add_legend("fill", title = gen_title(input$clin)) %>%
     set_options(width = 875, height = 575) 
   }) %>% bind_shiny("plot")
 })
