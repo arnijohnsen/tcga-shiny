@@ -3,10 +3,14 @@ library(ggvis)
 
 shinyUI(fluidPage(
 
-  titlePanel("TCGA Plotting app version 0.07"),
+  title = "TCGA Plotting app version 0.07",
 
-  sidebarLayout(
-    sidebarPanel(
+  ggvisOutput("plot"), 
+
+  hr(),
+
+  fluidRow(
+    column(4,
       selectizeInput(
         "gene",
         label = "Search for gene",
@@ -40,13 +44,27 @@ shinyUI(fluidPage(
         ),
         selected = "expr", 
         inline = TRUE
-      ),
+      )
+    ),
+    column(4,
       selectizeInput(
         "fill",
         label = "Select variable to color points",
         choices = NULL,
         options = list(maxItems = 1)
       ),
+      checkboxInput(
+        "log_scale_x",
+        "Log scale x axis", 
+        value = FALSE
+      ),
+      checkboxInput(
+        "log_scale_y",
+        "Log scale y axis", 
+        value = FALSE
+      )
+    ),
+    column(4,
       sliderInput(
         "point_size",
         "Point size",
@@ -59,11 +77,15 @@ shinyUI(fluidPage(
         min = 0,
         max = 1,
         value = 0.8
+      ),
+      sliderInput(
+        "plot_height",
+        "Plot height",
+        min = 0,
+        max = 2000,
+        value = 800,
+        step = 50
       )
-    ),
-
-    mainPanel(
-      ggvisOutput("plot")
     )
   )
 ))
