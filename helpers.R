@@ -7,38 +7,40 @@ gen_title <- function(type){
     cnvs = "Copy number",
     expr = "Expression",
     meth = "Methylation",
-    gender = "Gender",
-    menopause_status = "Menopause status", 
-    tumor_status = "Tumor status",
-    vital_status = "Vital status", 
-    ajcc_pathologic_tumor_stage = "Tumor stage",
-    er_status_by_ihc = "ER status by IHC",
-    pr_status_by_ihc = "PR status by IHC",
-    her2_status_by_ihc = "HER2 status by IHC",
-    histological_type = "Histological type",
+    clin_gender = "Gender",
+    clin_menopause_status = "Menopause status", 
+    clin_tumor_status = "Tumor status",
+    clin_vital_status = "Vital status", 
+    clin_ajcc_pathologic_tumor_stage = "Tumor stage",
+    clin_er_status_by_ihc = "ER status by IHC",
+    clin_pr_status_by_ihc = "PR status by IHC",
+    clin_her2_status_by_ihc = "HER2 status by IHC",
+    clin_histological_type = "Histological type",
     "Undefined"
   )
 }
 
-clin_choices <- c(
-  "gender",
-  "menopause_status",
-  "tumor_status",
-  "vital_status",
-  "ajcc_pathologic_tumor_stage",
-  "er_status_by_ihc",
-  "pr_status_by_ihc",
-  "her2_status_by_ihc",
-  "histological_type"
+fill_choices <- c(
+  "muta",
+  "clin_gender",
+  "clin_menopause_status",
+  "clin_tumor_status",
+  "clin_vital_status",
+  "clin_ajcc_pathologic_tumor_stage",
+  "clin_er_status_by_ihc",
+  "clin_pr_status_by_ihc",
+  "clin_her2_status_by_ihc",
+  "clin_histological_type"
 )
-names(clin_choices) <- c(
-  "Gender",
-  "Menopause status", 
-  "Tumor status",
-  "Vital status", 
-  "Tumor stage",
-  "ER status by IHC",
-  "PR status by IHC",
-  "HER2 status by IHC",
-  "Histological type"
+names(fill_choices) <- c(
+  "Mutation status", 
+  "Clinical: Gender",
+  "Clinical: Menopause status", 
+  "Clinical: Tumor status",
+  "Clinical: Vital status", 
+  "Clinical: Tumor stage",
+  "Clinical: ER status by IHC",
+  "Clinical: PR status by IHC",
+  "Clinical: HER2 status by IHC",
+  "Clinical: Histological type"
 )

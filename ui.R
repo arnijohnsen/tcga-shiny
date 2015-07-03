@@ -3,7 +3,6 @@ library(data.table)
 library(reshape2)
 library(ggvis)
 library(dplyr)
-library(stringr)
 
 shinyUI(fluidPage(
 
@@ -46,8 +45,8 @@ shinyUI(fluidPage(
         inline = TRUE
       ),
       selectizeInput(
-        "clin",
-        label = "Select clinical data to use",
+        "fill",
+        label = "Select variable to color points",
         choices = NULL,
         options = list(maxItems = 1)
       ),
