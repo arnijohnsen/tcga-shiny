@@ -1,8 +1,5 @@
 library(shiny)
-library(data.table)
-library(reshape2)
 library(ggvis)
-library(dplyr)
 
 source("helpers.R")
 

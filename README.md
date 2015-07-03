@@ -6,8 +6,7 @@ https://github.com/arnijohnsen/tcga-analysis
 ## Installation
 In `R`, use the following commands
 ```
-# install.packages(c("shiny", "data.table", "RSQLite",
-#                    "reshape2", "ggvis", "dplyr", "stringr")
+# install.packages(c("shiny", "ggvis"))
 library(shiny)
 runGitHub("tcga-shiny", "arnijohnsen")
 ```
