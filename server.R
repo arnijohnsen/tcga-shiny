@@ -121,7 +121,7 @@ shinyServer(function(input, output, session) {
         "<b>", x$participant, "</b><br>",
         gen_title(input$x_value), " : ", signif(x$x, 4), "<br>",
         gen_title(input$y_value), " : ", signif(x$y, 4), "<br>",
-        "Fill : ", x["factor(z)"],
+        gen_title(input$fill),    " : ", x["factor(z)"],
         sep = ""
       )
     )

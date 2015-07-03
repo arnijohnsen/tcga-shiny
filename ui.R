@@ -6,7 +6,7 @@ library(dplyr)
 
 shinyUI(fluidPage(
 
-  titlePanel("BRCA Plotting app version 0.06"),
+  titlePanel("TCGA Plotting app version 0.07"),
 
   sidebarLayout(
     sidebarPanel(
