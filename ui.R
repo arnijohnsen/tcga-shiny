@@ -2,13 +2,7 @@ library(shiny)
 library(ggvis)
 
 shinyUI(fluidPage(
-
   title = "TCGA Plotting app version 0.07",
-
-  ggvisOutput("plot"), 
-
-  hr(),
-
   fluidRow(
     column(4,
       selectizeInput(
@@ -87,5 +81,7 @@ shinyUI(fluidPage(
         step = 50
       )
     )
-  )
+  ),
+  hr(),
+  ggvisOutput("plot")
 ))

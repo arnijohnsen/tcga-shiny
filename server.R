@@ -134,6 +134,8 @@ shinyServer(function(input, output, session) {
       opacity := input$point_opacity,
       size := input$point_size
     ) %>%
+    scale_numeric("x", trans = ifelse(input$log_scale_x, "log", "linear")) %>%
+    scale_numeric("y", trans = ifelse(input$log_scale_y, "log", "linear")) %>%
     add_axis("x", title = gen_title(input$x_value)) %>%
     add_axis("y", title = gen_title(input$y_value), title_offset = 60) %>%
     add_tooltip(plot_tooltip, on = "hover") %>%
