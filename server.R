@@ -55,6 +55,16 @@ shinyServer(function(input, output, session) {
       session, "fill_minor", choices = fill_minor_choices(), server = TRUE
     )
   })
+  probe_to_status <- function(probe){
+    if (length(probe) > 1) {
+      return(sapply(probe, probe_to_status))
+    }
+    status <- linked_probes_genes$status[linked_probes_genes$probe == probe]
+    if (length(status) > 1){
+      status <- status[1]
+    }
+    return(status)
+  }
   probe_choices <- reactive({
     if (input$gene == "") {
       return(NULL)
@@ -62,7 +72,11 @@ shinyServer(function(input, output, session) {
     all_probes <- linked_probes_genes$probe[
       linked_probes_genes$gene == input$gene
     ]
-    return(intersect(all_probes, available_probes))
+    return_probes <- intersect(all_probes, available_probes)
+    names(return_probes) <- paste(
+      return_probes, " (", probe_to_status(return_probes), ")", sep = ""
+    )
+    return(return_probes)
   })
   observe({
     updateSelectizeInput(

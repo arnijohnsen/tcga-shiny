@@ -30,13 +30,25 @@ R
 ### Selecting genes, probes and axis variables
 Begin by selecing or searching for a gene by it name, in the "Search for gene"
 textbox. Once a gene has been selected, you can select a methylation probe
-linked to the selected genes, in "Search for probe".
+linked to the selected genes, in "Search for probe". Each probe is annotated
+based on its position in the gene:
+
+- `(promoter)` indicates probes in TSS200 or 5'UTR regions
+- `(body ...)` indicates probes in gene body\*
+    - `(body_island)` indicates probes in gene body inside cpg islands
+    - `(body_shore)` indicates probes in gene body on cpg island shores
+    - `(body_none)` indicates probes in gene body outside cpg islands
+- `(enhancer)` indicates probes linked to enhancer regions
+- `(undefined)` indicates probes which fall in to no other category
+
+If a probe falls in to multiple categories, the categorical hierarchy is:
+promoter, enhancer, body, undefined
 
 Three numerical variables are available for plotting: 
 
- - Copy number variation
- - Gene expression from RNA Sequencing
- - Methylation
+- Copy number variation
+- Gene expression from RNA Sequencing
+- Methylation
 
 If methylation is selected as a plotting variable, a methylation probe must also
 be selected in "Search for probe".
