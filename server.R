@@ -39,16 +39,16 @@ shinyServer(function(input, output, session) {
     if (input$fill_major == "") {
       return(NULL)
     } else if (input$fill_major == "muta") {
-      return("Mutation status")
+      choices <- "muta"
+      names(choices) <- "Mutation status"
     } else if (input$fill_major == "subt") {
       choices <- allowed_subt_fill_minor
       names(choices) <- gen_title(choices)
-      return(choices)
     } else if (input$fill_major == "clin") {
       choices <- allowed_clin_fill_minor
       names(choices) <- gen_title(choices)
-      return(choices)
     }
+    return(choices)
   })
   observe({
     updateSelectizeInput(
