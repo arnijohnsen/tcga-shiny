@@ -186,6 +186,21 @@ add_custom_fill_color <- function(vis, type) {
   if (type %in% c("pam50_rnaseq", "pam50_array")) {
     color_range <- c("red", "purple", "blue", "cyan", "green", "gray")
     return(scale_nominal(vis, "fill", range = color_range))
+  } else if (type == "iC10"){
+    color_range <- c(
+      "#F15723", # orange red
+      "#724B9E", # dark purple
+      "#6DBD68", # green
+      "#CF2F79", # pink
+      "#2ABECA", # light blue
+      "#8A1619", # brown
+      "#F4ED44", # yellow
+      "#34459D", # dark blue
+      "#FBA919", # orange yellow
+      "#CE8CBA", # purple
+      "gray" # NA values
+    )
+    return(scale_nominal(vis, "fill", range = color_range))
   } else {
     return(vis)
   }
