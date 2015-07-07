@@ -42,7 +42,13 @@ shinyUI(fluidPage(
     ),
     column(4,
       selectizeInput(
-        "fill",
+        "fill_major",
+        label = "Select variable to color points",
+        choices = NULL,
+        options = list(maxItems = 1)
+      ),
+      selectizeInput(
+        "fill_minor",
         label = "Select variable to color points",
         choices = NULL,
         options = list(maxItems = 1)
