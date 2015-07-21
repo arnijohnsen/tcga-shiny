@@ -8,6 +8,7 @@ clin <- readRDS("data/brca/clin.Rds")
 cnvs_participants <- readRDS("data/brca/cnvs_participants.Rds")
 expr_participants <- readRDS("data/brca/expr_participants.Rds")
 meth_participants <- readRDS("data/brca/meth_participants.Rds")
+mirn_participants <- readRDS("data/brca/mirn_participants.Rds")
 muta_participants <- readRDS("data/brca/muta_participants.Rds")
 linked_probes_genes <- readRDS("data/brca/linked_probes_genes.Rds")
 
@@ -73,9 +74,11 @@ shinyServer(function(input, output, session) {
       linked_probes_genes$gene == input$gene
     ]
     return_probes <- intersect(all_probes, available_probes)
-    names(return_probes) <- paste(
-      return_probes, " (", probe_to_status(return_probes), ")", sep = ""
-    )
+    if (length(return_probes) > 0) {
+      names(return_probes) <- paste(
+        return_probes, " (", probe_to_status(return_probes), ")", sep = ""
+      )
+    }
     return(return_probes)
   })
   observe({
@@ -113,7 +116,11 @@ shinyServer(function(input, output, session) {
     )
     names(x_raw) <- switch(input$x_value,
       "cnvs" = cnvs_participants,
-      "expr" = expr_participants,
+      "expr" = switch(substr(input$gene, 1, 3),
+        "MIR" = mirn_participants,
+        "LET" = mirn_participants,
+        expr_participants
+      ),
       "meth" = meth_participants
     )
     y_raw <- readRDS(
@@ -126,7 +133,11 @@ shinyServer(function(input, output, session) {
     )
     names(y_raw) <- switch(input$y_value,
       "cnvs" = cnvs_participants,
-      "expr" = expr_participants,
+      "expr" = switch(substr(input$gene, 1, 3),
+        "MIR" = mirn_participants,
+        "LET" = mirn_participants,
+        expr_participants
+      ),
       "meth" = meth_participants
     )
     part_in_both <- intersect(names(x_raw), names(y_raw))
